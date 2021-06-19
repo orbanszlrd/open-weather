@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/weather")
@@ -19,6 +20,15 @@ public class WeatherController {
     public String currentWeather(@PathVariable(required = false) String location, Model model) {
         CurrentWeather data = weatherService.current(location);
         model.addAttribute("data", data);
+
+        return "current-weather";
+    }
+
+    @GetMapping({"/current/"})
+    public String searchCurrentWeather(@RequestParam(required = false) String location, Model model) {
+        CurrentWeather data = weatherService.current(location);
+        model.addAttribute("data", data);
+
 
         return "current-weather";
     }
