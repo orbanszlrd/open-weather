@@ -16,6 +16,11 @@ public class WeatherController {
     @Autowired
     WeatherService weatherService;
 
+    @GetMapping("")
+    public String index() {
+        return "redirect:/weather/current";
+    }
+
     @GetMapping({"/current", "/current/{location}"})
     public String currentWeather(@PathVariable(required = false) String location, Model model) {
         CurrentWeather data = weatherService.current(location);
