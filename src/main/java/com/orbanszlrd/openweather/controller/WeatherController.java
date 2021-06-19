@@ -24,17 +24,26 @@ public class WeatherController {
     @GetMapping({"/current", "/current/{location}"})
     public String currentWeather(@PathVariable(required = false) String location, Model model) {
         CurrentWeather data = weatherService.current(location);
-        model.addAttribute("data", data);
 
-        return "current-weather";
+        if (data != null) {
+            model.addAttribute("data", data);
+
+            return "current-weather";
+        } else {
+            return "error";
+        }
     }
 
     @GetMapping({"/current/"})
     public String searchCurrentWeather(@RequestParam(required = false) String location, Model model) {
         CurrentWeather data = weatherService.current(location);
-        model.addAttribute("data", data);
 
+        if (data != null) {
+            model.addAttribute("data", data);
 
-        return "current-weather";
+            return "current-weather";
+        } else {
+            return "error";
+        }
     }
 }

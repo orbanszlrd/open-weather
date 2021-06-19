@@ -26,8 +26,15 @@ public class WeatherService {
             q = location;
         }
 
-        CurrentWeather data = restTemplate.getForObject(BASE_URL +
-                "weather?q=" + q + "&units=" + unit + "&lang="+ lang + "&appid=" + appid, CurrentWeather.class);
+        CurrentWeather data = null;
+
+        try {
+            data = restTemplate.getForObject(BASE_URL +
+                    "weather?q=" + q + "&units=" + unit + "&lang="+ lang + "&appid=" + appid, CurrentWeather.class);
+
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
 
         if (data != null) {
             logger.info(data.toString());
