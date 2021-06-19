@@ -27,6 +27,7 @@ public class WeatherController {
 
         if (data != null) {
             model.addAttribute("data", data);
+            model.addAttribute("location", location);
 
             return "current-weather";
         } else {
@@ -40,6 +41,7 @@ public class WeatherController {
 
         if (data != null) {
             model.addAttribute("data", data);
+            model.addAttribute("location", location);
 
             return "current-weather";
         } else {
