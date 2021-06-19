@@ -43,7 +43,7 @@ public class WeatherController {
             model.addAttribute("data", data);
             model.addAttribute("location", location);
 
-            return "current-weather";
+            return "redirect:/weather/current/" + location;
         } else {
             return "error";
         }
