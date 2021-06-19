@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Weather</title>
+</head>
+<body>
+<h1 th:text="'Current Weather in ' + ${data.getName()}">Current Weather</h1>
+
+<div>
+    <div th:text="'Latitude: ' + ${data.getCoord().getLat()}">Latitude</div>
+    <div th:text="'Longitude: ' + ${data.getCoord().getLon()}">Longitude</div>
+    <div th:text="'Temperature: ' + ${data.getCoord().getLon()} + '  &deg;C'">Temperature</div>
+    <div th:text="'Description: ' + ${data.getWeather().get(0).getMain()}">Description</div>
+    <div th:text="'Wind Speed: ' + ${data.getWind().getSpeed()}">Wind Speed</div>
+    <div th:text="'Wind Direction: ' + ${data.getWind().getDeg()} + ' &deg;'">Wind  Direction</div>
+</div>
+
+
+</body>
+</html>
