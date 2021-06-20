@@ -12,12 +12,52 @@
     <div class="card m-5">
         <div class="card-header p-2" th:text="${data.getName()}">Current Weather</div>
         <div class="card-body p-2">
-            <div th:text="'Latitude: ' + ${data.getCoord().getLat()}">Latitude</div>
-            <div th:text="'Longitude: ' + ${data.getCoord().getLon()}">Longitude</div>
-            <div th:text="'Temperature: ' + ${data.getCoord().getLon()} + '  &deg;C'">Temperature</div>
-            <div th:text="'Description: ' + ${data.getWeather().get(0).getMain()}">Description</div>
-            <div th:text="'Wind Speed: ' + ${data.getWind().getSpeed()}">Wind Speed</div>
-            <div th:text="'Wind Direction: ' + ${data.getWind().getDeg()} + ' &deg;'">Wind  Direction</div>
+
+            <dl>
+                <dt>Coordinates</dt>
+                <dd>
+                <div th:text="'Latitude: ' + ${data.getCoord().getLat()}">Latitude</div>
+                <div th:text="'Longitude: ' + ${data.getCoord().getLon()}">Longitude</div>
+                </dd>
+                <dt>Main</dt>
+                <dd>
+                    <div th:text="'Temperature: ' + ${data.getMain().getTemp()} + '  &deg;C'">Temperature</div>
+                    <div th:text="'Feels Like: ' + ${data.getMain().getFeels_like()} + '  &deg;C'">Feels Like</div>
+                    <div th:text="'Minimum: ' + ${data.getMain().getTemp_min()} + '  &deg;C'">Minimum Temperature</div>
+                    <div th:text="'Maximum: ' + ${data.getMain().getTemp_max()} + '  &deg;C'">Maximum Temperature</div>
+                    <div th:text="'Pressure: ' + ${data.getMain().getPressure()}">Pressure</div>
+                    <div th:text="'Humidity: ' + ${data.getMain().getHumidity()}">Humidity</div>
+                    <div th:text="'Sea Level: ' + ${data.getMain().getSea_level()}">Sea level</div>
+                    <div th:text="'Ground Level: ' + ${data.getMain().getGrnd_level()}">Ground level</div>
+                </dd>
+
+                <dt>Weather</dt>
+                <dd th:each="weather: ${data.getWeather()}">
+                    <div th:text="'Main: ' + ${weather.getMain()}">Main</div>
+                    <div th:text="'Description: ' + ${weather.getDescription()}">Description</div>
+                    <div th:text="'Icon: ' + ${weather.getIcon()}">Main</div>
+                </dd>
+
+                <dt>Clouds</dt>
+                <dd>
+                    <div th:text="'Clouds: ' + ${data.getClouds().getAll()}">Clouds</div>
+                </dd>
+
+                <dt>Wind</dt>
+                <dd>
+                    <div th:text="'Speed: ' + ${data.getWind().getSpeed()}">Speed</div>
+                    <div th:text="'Direction: ' + ${data.getWind().getDeg()} + ' &deg;'">Direction</div>
+                    <div th:text="'Gust: ' + ${data.getWind().getGust()}">Gust</div>
+                </dd>
+
+                <dt>Sys</dt>
+                <dd>
+                    <div th:text="'Type: ' + ${data.getSys().getType()}">Type</div>
+                    <div th:text="'Country: ' + ${data.getSys().getCountry()}">Country</div>
+                    <div th:text="'Sunrise: ' + ${data.getSys().getSunrise()}">Sunrise</div>
+                    <div th:text="'Sunset: ' + ${data.getSys().getSunset()}">Sunset</div>
+                </dd>
+            </dl>
         </div>
     </div>
 </div>
