@@ -5,8 +5,13 @@ import com.orbanszlrd.openweather.model.CurrentWeather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @Service
 public class WeatherService {
@@ -21,7 +26,10 @@ public class WeatherService {
     private static String unit = "metric";
     private static String q = System.getenv("q") !=  null ? System.getenv("q") : "Budapest";
 
+    @Cacheable("weather.current")
     public CurrentWeather current(String location) {
+        System.out.println("Called at " + Timestamp.from(Instant.now()));
+
         if (location != null) {
             q = location;
         }
