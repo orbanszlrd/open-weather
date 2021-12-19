@@ -29,7 +29,7 @@ public class CurrentWeather {
     }
 
     @Getter
-    private static class Coord {
+    public static class Coord {
         private float lon;
         private float lat;
     }
